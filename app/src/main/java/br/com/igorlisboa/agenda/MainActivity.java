@@ -2,6 +2,9 @@ package br.com.igorlisboa.agenda;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,16 +22,9 @@ public class MainActivity extends Activity {
         Toast.makeText(this, "Hello World!!!!!", Toast.LENGTH_LONG).show();
         setContentView(R.layout.activity_main);
 
-        List<String> listaAlunos = new ArrayList<>(Arrays.asList("João", "Igor", "Fernando", "Pedro"));
+        List<String> alunos = new ArrayList<>(Arrays.asList("João", "Igor", "Fernando", "Pedro", "João", "Igor", "Fernando", "Pedro","João", "Igor", "Fernando", "Pedro","João", "Igor", "Fernando", "Pedro","João", "Igor", "Fernando", "Pedro","João", "Igor", "Fernando", "Pedro"));
 
-        TextView firstName = findViewById(R.id.textView4);
-        TextView secondName = findViewById(R.id.textView);
-        TextView thirdName = findViewById(R.id.textView2);
-        TextView fourthName = findViewById(R.id.textView3);
-
-        firstName.setText(listaAlunos.get(0));
-        secondName.setText(listaAlunos.get(1));
-        thirdName.setText(listaAlunos.get(2));
-        fourthName.setText(listaAlunos.get(3));
+        ListView listaAlunos = findViewById(R.id.activity_main_lista_de_alunos);
+        listaAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos));
     }
 }
