@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import br.com.igorlisboa.agenda.R;
+import br.com.igorlisboa.agenda.dao.AlunoDao;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
@@ -23,9 +24,14 @@ public class ListaAlunosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_alunos);
         setTitle("Lista de alunos");
 
-        List<String> alunos = new ArrayList<>(Arrays.asList("João", "Igor", "Fernando", "Pedro", "João", "Igor", "Fernando", "Pedro","João", "Igor", "Fernando", "Pedro","João", "Igor", "Fernando", "Pedro","João", "Igor", "Fernando", "Pedro","João", "Igor", "Fernando", "Pedro"));
+        AlunoDao alunoDao = new AlunoDao();
+
+//        List<String> alunos = new ArrayList<>(Arrays.asList("João", "Igor", "Fernando", "Pedro", "João", "Igor", "Fernando", "Pedro","João", "Igor", "Fernando", "Pedro","João", "Igor", "Fernando", "Pedro","João", "Igor", "Fernando", "Pedro","João", "Igor", "Fernando", "Pedro"));
 
         ListView listaAlunos = findViewById(R.id.activity_lista_de_alunos_listview);
-        listaAlunos.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, alunos));
+        listaAlunos.setAdapter(new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_list_item_1,
+                alunoDao.todos()));
     }
 }
