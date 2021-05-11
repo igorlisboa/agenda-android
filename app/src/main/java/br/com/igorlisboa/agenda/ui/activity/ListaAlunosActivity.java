@@ -12,37 +12,44 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import br.com.igorlisboa.agenda.R;
 import br.com.igorlisboa.agenda.dao.AlunoDao;
 
 public class ListaAlunosActivity extends AppCompatActivity {
 
+    public static final String TITULO_APPBAR = "Lista de alunos";
+    private final AlunoDao alunoDao = new AlunoDao();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toast.makeText(this, "Hello World!!!!!", Toast.LENGTH_LONG).show();
+
         setContentView(R.layout.activity_lista_alunos);
-        setTitle("Lista de alunos");
+        setTitle(TITULO_APPBAR);
+        configuraFabNovoAluno();
+    }
 
+    private void configuraFabNovoAluno() {
         FloatingActionButton botaoNovoAluno = findViewById(R.id.activity_lista_alunos_fab_novo_aluno);
-
         botaoNovoAluno.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ListaAlunosActivity.this, FormularioAlunoActivity.class));
+                abreAlunoActivit();
             }
         });
+    }
+
+    private void abreAlunoActivit() {
+        startActivity(new Intent(this, FormularioAlunoActivity.class));
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        AlunoDao alunoDao = new AlunoDao();
+        configuraLista();
+    }
 
+    private void configuraLista() {
         ListView listaAlunos = findViewById(R.id.activity_lista_de_alunos_listview);
         listaAlunos.setAdapter(new ArrayAdapter<>(
                 this,
